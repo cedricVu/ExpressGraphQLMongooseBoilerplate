@@ -15,7 +15,6 @@ import HTTPStatus from 'http-status';
 import APIError from './helpers/api-error';
 import Response from './helpers/response';
 import MemWatch from 'memwatch-next';
-import Heapdump from 'heapdump';
 import { connect } from './models/index';
 import graphqlHTTP from 'express-graphql';
 import { rootSchema } from './graphql/index';
@@ -84,6 +83,7 @@ Http.createServer(app).listen(port, () => {
 MemWatch.on('leak', (info) => {
   console.log('Leak:');
   console.log(info);
+  const Heapdump = require('heapdump');
   Heapdump.writeSnapshot((err, fileName) => {
     console.log(fileName);
   });
