@@ -39,7 +39,7 @@ app
   .set('view engine', 'ejs');
 // Init graph
 
-app.use('/graphql', [Cors(), JWT.verifyAccount], (req, res) => {
+app.use('/graphql', [Cors()], (req, res) => {
   graphqlHTTP({
     schema: rootSchema,
     rootValue: global,
